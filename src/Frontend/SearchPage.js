@@ -1,21 +1,44 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PostsContainer from "./PostsContainer";
 import Search from "./Search";
 
 
 const SearchPage = () => {
     const [searchFields, setSearchFields] = useState(null);
+    const [posts, setPosts] = useState(null);
+    const [isSearching, setIsSearching] = useState(false);
 
     const getSearchFields = (searchInput) => {
         setSearchFields(searchInput);
+        console.log(`Retrieved fields`);
     }
+
+    const initialRender = useRef(true);
+
+    useEffect(() => {
+        if (initialRender.current) {
+            initialRender.current = false;
+        } else {
+            // do thing
+            setIsSearching(true);
+            fetch('http://localhost:8000/babyyoda.official')
+                .then(res => {
+                    return res.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    setIsSearching(false);
+                    setPosts(data);
+                });
+        }
+    }, [searchFields]);
 
     return (
         <div className="searchPage">
             <h2>Search Page</h2>
             <Search getSearchFields={getSearchFields} />
-            <p>{searchFields && searchFields.username}</p>
-            <PostsContainer />
+            {isSearching && <div>Searching...</div>}
+            {posts && <PostsContainer posts={posts} />}
         </div>
     );
 }
