@@ -20,7 +20,6 @@ const SearchPage = () => {
         if (initialRender.current) {
             initialRender.current = false;
         } else {
-            // do thing
             setIsSearching(true);
             fetch('http://localhost:8000/babyyoda.official')
                 .then(res => {

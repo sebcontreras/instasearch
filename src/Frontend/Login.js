@@ -1,4 +1,5 @@
 import { useState } from "react";
+// const scraper = require('../Backend/scraper');
 
 const Login = () => {
 
@@ -8,6 +9,8 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const credentials = { username, password };
+        setUsername(username);
+        setPassword(password);
         console.log(credentials);
         // send login API
         // redirect to search page
