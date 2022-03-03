@@ -21,7 +21,7 @@ const SearchPage = () => {
             initialRender.current = false;
         } else {
             setIsSearching(true);
-            fetch('http://localhost:8000/babyyoda.official')
+            fetch('http://localhost:7000/')
                 .then(res => {
                     if (!res.ok) {
                         throw Error('Could not fetch data from server. Please try again');
@@ -45,7 +45,7 @@ const SearchPage = () => {
         <div className="searchPage">
             <h2>Search Page</h2>
             <Search getSearchFields={getSearchFields} />
-            { error && <div>{ error }</div>}
+            {error && <div>{error}</div>}
             {isSearching && <div>Searching...</div>}
             {posts && <PostsContainer posts={posts} />}
         </div>
