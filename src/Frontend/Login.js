@@ -1,5 +1,5 @@
 import { useState } from "react";
-// const scraper = require('../Backend/scraper');
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
 
@@ -8,6 +8,7 @@ const Login = () => {
     const [isLoggingIn, setIsLoggingIn] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [error, setError] = useState(null);
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,6 +18,8 @@ const Login = () => {
         setIsLoggingIn(true);
         setIsLoggedIn(false);
         console.log(credentials);
+
+        const abortCont = new AbortController();
 
         // send login API
         fetch(`http://localhost:7000/login/?username=${username}&password=${password}`)
@@ -32,40 +35,46 @@ const Login = () => {
                 setIsLoggedIn(true);
                 setError(null);
                 // redirect to search page
-                
+                history.push('/search');
             })
             .catch(err => {
-                setIsLoggingIn(false);
-                setIsLoggedIn(false);
-                setError(err.message);
+                if (err.name === 'AbortError') {
+                    console.log('fetch aborted');
+                } else {
+                    setIsLoggingIn(false);
+                    setIsLoggedIn(false);
+                    setError(err.message);
+                }
             });
+        
+        return () => abortCont.abort();
     }
 
-return (
-    <div className="login">
-        <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
-            <label>Username:</label>
-            <input
-                type="text"
-                required
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-            <label>Password:</label>
-            <input
-                type="text"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <button>Login</button>
-        </form>
-        {error && <div>{error}</div>}
-        {isLoggingIn && !error && <div>Loggin In...</div>}
-        {isLoggedIn && !error && <div>Logged In!</div>}
-    </div>
-);
+    return (
+        <div className="login">
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit}>
+                <label>Username:</label>
+                <input
+                    type="text"
+                    required
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+                <label>Password:</label>
+                <input
+                    type="text"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <button>Login</button>
+            </form>
+            {error && <div>{error}</div>}
+            {isLoggingIn && !error && <div>Loggin In...</div>}
+            {isLoggedIn && !error && <div>Logged In!</div>}
+        </div>
+    );
 }
 
 export default Login;

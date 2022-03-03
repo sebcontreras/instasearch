@@ -6,7 +6,9 @@ const Home = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:7000/')
+        const abortCont = new AbortController();
+
+        fetch('http://localhost:7000/', {signal: abortCont.signal})
             .then(res => {
                 if (!res.ok) {
                     throw Error('Could not launch headless browser. Please try again');
@@ -19,9 +21,15 @@ const Home = () => {
                 setError(null);
             })
             .catch(err => {
-                setIsBrowserReady(true);
-                setError(err.message);
+                if (err.name === 'AbortError') {
+                    console.log('fetch aborted');
+                } else {
+                    setIsBrowserReady(true);
+                    setError(err.message);
+                }
             });
+        
+        return () => abortCont.abort();
     }, []);
 
     return (
