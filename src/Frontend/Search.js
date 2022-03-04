@@ -1,8 +1,10 @@
 import { useState } from "react";
+import ReactTagInput from "@pathofdev/react-tag-input";
+import "@pathofdev/react-tag-input/build/index.css";
 
-const Search = ({ getSearchFields }) => {
+const Search = ({ getSearchFields, refreshKeywords }) => {
     const [account, setAccount] = useState('');
-    const [keywords, setKeywords] = useState('');
+    const [keywords, setKeywords] = useState([]);
     const [limit, setLimit] = useState(25);
 
     const handleSubmit = (e) => {
@@ -10,6 +12,10 @@ const Search = ({ getSearchFields }) => {
         const searchFields = { account, keywords, limit };
         console.log(searchFields);
         getSearchFields(searchFields);
+    }
+
+    const handleKeywordsUpdate = (words) => {
+        setKeywords(words);
     }
 
     return (
@@ -24,11 +30,20 @@ const Search = ({ getSearchFields }) => {
                     onChange={(e) => setAccount(e.target.value)}
                 />
                 <label>Keywords:</label>
-                <input
+                {/* <input
                     type="text"
                     required
                     value={keywords}
                     onChange={(e) => setKeywords(e.target.value)}
+                /> */}
+                {/* <TagInput
+                    value={keywords}
+                    onChange={onChange}
+                    onEnter={(e) => addWord(e)}
+                /> */}
+                <ReactTagInput
+                    tags={keywords}
+                    onChange={(newKey) => handleKeywordsUpdate(newKey)}
                 />
                 <label>Limit:</label>
                 <select
