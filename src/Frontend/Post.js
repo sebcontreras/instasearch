@@ -2,16 +2,18 @@ import React from "react";
 
 const Post = ({ img, date, keywords, imgAlt, link }) => {
     return (
-        <React.Fragment>
+        <a href={link}>
             <div className="post">
-                <img src={img} alt={imgAlt.original} />
+                <div className="post-img-container">
+                    <img src={img} alt={imgAlt.original} />
+                </div>
                 <div className="post-info">
                     <a href={link}>Go to Post</a>
                     <p>Date: {date.month} {date.day}, {date.year}</p>
-                    <p>Keywords: {keywords}</p>
+                    <p>Keywords: {keywords && keywords.toString()}</p>
                 </div>
             </div>
-        </React.Fragment>
+        </a>
     );
 }
 

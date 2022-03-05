@@ -21,30 +21,23 @@ const Search = ({ getSearchFields, refreshKeywords }) => {
     return (
         <div className="login">
             <h1>Search Input</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Account:</label>
-                <input
-                    type="text"
-                    required
-                    value={account}
-                    onChange={(e) => setAccount(e.target.value)}
-                />
-                <label>Keywords:</label>
-                {/* <input
-                    type="text"
-                    required
-                    value={keywords}
-                    onChange={(e) => setKeywords(e.target.value)}
-                /> */}
-                {/* <TagInput
-                    value={keywords}
-                    onChange={onChange}
-                    onEnter={(e) => addWord(e)}
-                /> */}
-                <ReactTagInput
-                    tags={keywords}
-                    onChange={(newKey) => handleKeywordsUpdate(newKey)}
-                />
+            <form className="input-form" onSubmit={handleSubmit}>
+                <div className="login-account">
+                    <label>Account:</label>
+                    <input
+                        type="text"
+                        required
+                        value={account}
+                        onChange={(e) => setAccount(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label>Keywords:</label>
+                    <ReactTagInput
+                        tags={keywords}
+                        onChange={(newKey) => handleKeywordsUpdate(newKey)}
+                    />
+                </div>
                 <label>Limit:</label>
                 <select
                     type="number"

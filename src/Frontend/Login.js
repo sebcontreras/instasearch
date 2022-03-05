@@ -46,33 +46,38 @@ const Login = () => {
                     setError(err.message);
                 }
             });
-        
+
         return () => abortCont.abort();
     }
 
     return (
         <div className="login">
             <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Username:</label>
-                <input
-                    type="text"
-                    required
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-                <label>Password:</label>
-                <input
-                    type="text"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <button>Login</button>
-            </form>
-            {error && <div>{error}</div>}
-            {isLoggingIn && !error && <div>Loggin In...</div>}
-            {isLoggedIn && !error && <div>Logged In!</div>}
+            <div className="login-form">
+                <form onSubmit={handleSubmit}>
+                    <label>Username:</label>
+                    <input
+                        type="text"
+                        required
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <label>Password:</label>
+                    <input
+                        type="text"
+                        required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <button>Login</button>
+                </form>
+            </div>
+            <div className="application-status">
+                <h2>Application Status</h2>
+                {error && <div>{error}</div>}
+                {isLoggingIn && !error && <div>Loggin In...</div>}
+                {isLoggedIn && !error && <div>Logged In!</div>}
+            </div>
         </div>
     );
 }

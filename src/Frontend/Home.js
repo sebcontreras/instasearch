@@ -8,7 +8,7 @@ const Home = () => {
     useEffect(() => {
         const abortCont = new AbortController();
 
-        fetch('http://localhost:7000/', {signal: abortCont.signal})
+        fetch('http://localhost:7000/', { signal: abortCont.signal })
             .then(res => {
                 if (!res.ok) {
                     throw Error('Could not launch headless browser. Please try again');
@@ -28,24 +28,27 @@ const Home = () => {
                     setError(err.message);
                 }
             });
-        
+
         return () => abortCont.abort();
     }, []);
 
     return (
         <div className="home">
-            <h1>Instasearch</h1>
-            <a href="https://sebcontreras.github.io/index.html">by Sebastian Contreras</a>
             <Login />
             {error && <div>{error}</div>}
             {isBrowserReady && !error && <div>Preparing Headless Browser...</div>}
             {!isBrowserReady && !error && <div>Headless Browser Ready!</div>}
             <h2>How to Use</h2>
-            <p>
-                Hey gang, in this full React tutorial series,I'll take you from novice to ninja.
-                We'll cover all the basics - what React is, setting up, components & routing -
-                before diving into state management, async code, built-in hooks & custom hooks too.
-            </p>
+            <div className="how-to">
+                <p>
+                    Welcome to Instasearch!
+
+                    Before using, ensure that the application status
+                    is ready. Begin by entering your Instagram Login
+                    details in the form above. Once you press enter,
+                    a headless chrome browser will begin the session!
+                </p>
+            </div>
         </div>
     );
 }

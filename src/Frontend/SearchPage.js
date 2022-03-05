@@ -17,7 +17,7 @@ const SearchPage = () => {
 
     const getSearchFields = (searchInput) => {
         const { account, keywords, limit } = searchInput;
-        // setSearchFields(searchInput);
+
         // Need to trigger new fetch
         if ((posts === null)
             || (searchAccount !== account)
@@ -35,31 +35,13 @@ const SearchPage = () => {
             console.log(filteredPosts);
             setFilteredPosts(filteredPosts);
         }
-
-        // else if (posts !== null && arrayEquals(keywords))
-
-        // setSearchAccount(account);
-        // setSearchLimit(limit);
-        // setSearchKeywords(keywords);
-        // setStartSearch(startSearch + 1);
         console.log(`Retrieved fields, account: ${searchInput.account}`);
     }
 
     const refreshKeywords = (keywords) => {
         setSearchKeywords(keywords);
         console.log(`Got sent the keywords: ${keywords}`);
-        if (posts && keywords) {
-            // filter data with new keywords
-        }
     }
-
-    // useEffect(() => {
-    //     if (searchKeywords.length > 0 && !isSearching && posts !== null) {
-    //         console.log(`triggered keywords useEffect`);
-    //         const filteredPosts = postFilter.filterData(posts, searchKeywords);
-    //         setPosts(filteredPosts);
-    //     }
-    // }, [searchKeywords, getSearchFields]);
 
     const initialRender = useRef(true);
 
@@ -68,7 +50,7 @@ const SearchPage = () => {
         const abortCont = new AbortController();
         if (initialRender.current) {
             initialRender.current = false;
-        } else {
+        } else if (searchAccount !== null) {
             setIsSearching(true);
             fetch(`http://localhost:7000/search/?account=${searchAccount}&limit=${searchLimit}`)
                 .then(res => {
@@ -103,13 +85,11 @@ const SearchPage = () => {
 
     return (
         <div className="searchPage">
-            <h2>Search Page</h2>
             <Search getSearchFields={getSearchFields} refreshKeywords={refreshKeywords} />
             {error && <div>{error}</div>}
             {isSearching && <div>Searching...</div>}
-            {filteredPosts && <PostsContainer posts={filteredPosts} />}
+            {!isSearching && filteredPosts && <PostsContainer posts={filteredPosts} />}
         </div>
     );
 }
-// {posts && <PostsContainer posts={posts} />}
 export default SearchPage;

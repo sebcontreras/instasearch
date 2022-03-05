@@ -10,16 +10,18 @@
   padding: 20px;
   display: flex;
   align-items: center;
-  max-width: 600px;
+  max-width: 650px;
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
 }
 .navbar h1 {
   color: #f1356d;
+  font-size: 45px;
 }
 .navbar .links {
   margin-left: auto;
 }
+
 .navbar a {
   margin-left: 16px;
   text-decoration: none;
@@ -30,7 +32,7 @@
 }
 .content {
   max-width: 600px;
-  margin: 40px auto;
+  margin: 10px auto;
   padding: 20px;
 }
 
@@ -48,11 +50,20 @@
   border-radius: 10px;
   display: flex;
 }
+
+.post-img-container {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+
 .post img {
   width: 200px;
   height: 200px;
   border: 1px solid #ddd;
   border-radius: 10px;
+  overflow: hidden;
+  display: table;
 }
 .post-info {
   padding: 0px 16px;
@@ -92,21 +103,70 @@
   cursor: pointer;
 }
 
-/* create new blog form */
-.create {
-  max-width: 400px;
-  margin: 0 auto;
-  text-align: center;
+/*login*/
+.login-form {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
 }
-.create label {
-  text-align: left;
-  display: block;
+.login form {
+  border-radius: 10px;
 }
-.create h2 {
-  font-size: 20px;
-  color: #f1356d;
-  margin-bottom: 30px;
+.login-account {
+  margin-bottom: 10px;
 }
+.login label {
+  padding: 5px;
+}
+
+.login h1 {
+  padding: 5px;
+}
+
+.login button {
+  margin: 20px;
+}
+
+/*input*/
+.input-form {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+}
+.input form div {
+  border-radius: 10px;
+}
+
+.input label {
+  padding: 5px;
+}
+
+.input h1 {
+  padding: 5px;
+}
+
+.input button {
+  margin: 10px;
+}
+
+/*Application Status*/
+.application-status {
+  margin-top: 30px;
+}
+.application-status h2 {
+  margin-bottom: 5px;
+}
+.application-status-text {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+.home h2 {
+  margin-top: 30px;
+}
+.how-to {
+  margin-top: 5px;
+}
+
 .create input,
 .create textarea,
 .create select {
