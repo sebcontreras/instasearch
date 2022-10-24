@@ -55,6 +55,7 @@
   width: 200px;
   height: 200px;
   overflow: hidden;
+  border: 10px solid #333;
 }
 
 .post img {
@@ -117,6 +118,7 @@
 }
 .login label {
   padding: 5px;
+  font-weight: 700;
 }
 
 .login h1 {
