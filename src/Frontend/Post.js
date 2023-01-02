@@ -7,9 +7,14 @@ const Post = ({ img, date, keywords, imgAlt, link }) => {
                 <img src={img} alt={imgAlt.original} />
             </div>
             <div className="post-info">
-                <a href={link} target="_blank" rel="noreferrer noopener">Go to Post</a>
-                <p>Date: {date.month} {date.day}, {date.year}</p>
-                <p>Keywords: {keywords && keywords.toString()}</p>
+                <p><strong>{date.month} {date.day}, {date.year}</strong></p>
+                <div className="go-to-post">
+                    <a href={link} target="_blank" rel="noreferrer noopener">
+                        <p>Go to post</p>
+                        <img src="/link_icon.png" alt="Link" ></img>
+                    </a>
+                </div>
+                <p><strong>Keywords:</strong> {keywords && keywords.toString()}</p>
             </div>
         </div>
     );

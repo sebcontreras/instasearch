@@ -5,6 +5,23 @@
   margin: 0;
   font-family: "Quicksand";
   color: #333;
+  height: 100%;
+}
+.content {
+  margin: 10px auto;
+  padding: 20px;
+  background-color: white;
+  width: 650px;
+}
+.App {
+  margin: 10px auto;
+  padding: 20px;
+
+  height: max-content;
+}
+.body {
+  height: 100%;
+  background-color: #f7f6f6;
 }
 .navbar {
   padding: 20px;
@@ -13,6 +30,7 @@
   max-width: 650px;
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
+  background-color: white;
 }
 .navbar h1 {
   color: #f1356d;
@@ -30,17 +48,13 @@
 .navbar a:hover {
   color: #f1356d;
 }
-.content {
-  max-width: 600px;
-  margin: 10px auto;
-  padding: 20px;
-}
 
 /* post / list */
 .posts-container {
   padding: 10px 16px;
   margin: 20px 0;
   border-bottom: 1px solid #fafafa;
+  background-color: #fdfdfd;
 }
 .post {
   padding: 10px 16px;
@@ -49,13 +63,16 @@
   border: 1px solid #ddd;
   border-radius: 10px;
   display: flex;
+
 }
 
 .post-img-container {
   width: 200px;
   height: 200px;
   overflow: hidden;
-  border: 10px solid #333;
+  border: 1px solid #fafafa;
+  border-radius: 10px;
+  background: rgba(243, 239, 239, 0.407);
 }
 
 .post img {
@@ -67,8 +84,50 @@
   display: table;
 }
 .post-info {
-  padding: 0px 16px;
+  padding: 5px 16px;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  margin: 10px 10px 10px 20px;
+  vertical-align: middle;
 }
+.post-info a {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.post-info p {
+  font-size: 17px;
+  padding: 10px 10px 10px 10px;
+}
+
+.go-to-post a img {
+  width: 25px;
+  height: 25px;
+  overflow: hidden;
+  border: hidden;
+  padding: 10px 5px 5px 20px;
+}
+
+.go-to-post a {
+  display: flex;
+  padding: 10px 10px 10px 10px;
+  text-decoration: none;
+}
+
+.go-to-post p {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.go-to-post {
+  width: 200px;
+  grid-row: auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin: 10px;
+  background: rgb(243, 239, 239);
+}
+
 .blog-preview {
   padding: 10px 16px;
   margin: 20px 0;
